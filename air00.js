@@ -4,25 +4,24 @@ const ARGS_ARRAY = process.argv;
 const STRING_SEPARATOR = " ";
 
 const splitString = (stringBeforeCut, separator) => {
+    const FINAL_ARRAY = [];
     let startIndex = 0;
-    let arrayOfStrings = [];
     
     for(let i = 0; i < stringBeforeCut.length; i++){    
-        if(stringBeforeCut[i].includes(separator) && stringBeforeCut[i+1] !== STRING_SEPARATOR){
+        if(stringBeforeCut[i].includes(separator) && stringBeforeCut[i+1] !== STRING_SEPARATOR){ // Cut with separator save the string in array
             let endIndex = i;
-            insertStringInArray(arrayOfStrings, stringBeforeCut, startIndex, endIndex);
+            cutStringAndSaveInArray(FINAL_ARRAY, stringBeforeCut, startIndex, endIndex);
             startIndex = i + 1;
 
-        } else if(i + 1 === stringBeforeCut.length){
-            // For last Word in String
+        } else if(i + 1 === stringBeforeCut.length){  // Treatment of a last Word in the String
             let endIndex = i + 1;
-            insertStringInArray(arrayOfStrings, stringBeforeCut, startIndex, endIndex);
+            cutStringAndSaveInArray(FINAL_ARRAY, stringBeforeCut, startIndex, endIndex);
         }
     }
-    return arrayOfStrings.join("\n");
+    return FINAL_ARRAY.join("\n");
 }
 
-const insertStringInArray = (arr, string, start, end) => {
+const cutStringAndSaveInArray = (arr, string, start, end) => {
     let tempString = "";
     
     for(let j = start; j < end; j++){
@@ -31,4 +30,10 @@ const insertStringInArray = (arr, string, start, end) => {
     arr.push(tempString);
 }
 
-console.log(splitString(ARGS_ARRAY[2], STRING_SEPARATOR));
+// Error Handling
+const ARGS_OK = myTools.checkArgumentCount(1, ARGS_ARRAY);
+if(!ARGS_OK)  console.log("Veuillez entrer une chaîne de caractères.");
+// Display
+if(ARGS_OK){
+    console.log(splitString(ARGS_ARRAY[2], STRING_SEPARATOR));
+}

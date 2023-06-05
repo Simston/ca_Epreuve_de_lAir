@@ -8,8 +8,8 @@ class MyTools {
      */
     checkArgumentCount(expectedCountNumber, args){
 
-        let ignoreInArray = 2;
-        let countArgs = args.length - ignoreInArray;
+        const ignoreInArray = 2;
+        const countArgs = args.length - ignoreInArray;
 
         return expectedCountNumber === countArgs;
     }
@@ -22,8 +22,8 @@ class MyTools {
      */
      checkMinArgumentCount(expectedMinCountNumber, args){
 
-      let ignoreInArray = 2;
-      let countArgs = args.length - ignoreInArray;
+      const ignoreInArray = 2;
+      const countArgs = args.length - ignoreInArray;
 
       return expectedMinCountNumber <= countArgs;
   }
@@ -99,15 +99,6 @@ class MyTools {
     }
     return true;
   }
-  
-
-    lengthOf(data) {
-        let count = 0;
-        for (let i = 0; data[i] !== undefined; i++) {
-            count++;
-        }
-        return count;
-    }
 }
 
 // Export de la classe pour une utilisation externe   
