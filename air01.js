@@ -16,6 +16,7 @@ const splitStringWithStringSeparator = (stringBeforeCut, separator) => {
         }else{
             matchCount = 0;
         }        
+
         if(matchCount === separator.length){
             string = string.slice(0, string.length - separator.length);
             FINAL_ARRAY.push(string);
@@ -23,11 +24,9 @@ const splitStringWithStringSeparator = (stringBeforeCut, separator) => {
             matchCount = 0;
         }    
 
-        if(i == stringBeforeCut.length -1){
+        if(i === stringBeforeCut.length -1){
             FINAL_ARRAY.push(string);
         }
-    }
-    //console.log(string)
     return FINAL_ARRAY.join("\n");
 }
 
