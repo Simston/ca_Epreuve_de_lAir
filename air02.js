@@ -2,35 +2,45 @@ const MyTools = require('./MyTools');
 const myTools = new MyTools();
 const COMMAND_LINE_ARGS = process.argv;
 
-const getArgumentsIntoArray = args => {
-    let inputArray = [];
-    let resultStringSeparator = "";
+const findIntruders = arr => {
+    const intrudersArray = [];
+    let isUnique = true;
 
-   for( let i = 2; i <= args.length ; i++){
-    if(i === args.length){
-        resultStringSeparator = args[i-1];
-    }else if(i < args.length-1){
-        inputArray.push(args[i]);
+    for (let i=0; i < arr.length; i++){
+        isUnique = true;
+
+        for(let j=0; j < arr.length; j++){
+
+            if(i === j){
+                j++;
+            } else if(arr[i] === arr[j]){
+                    isUnique = false;
+            }
+        }
+
+        if(isUnique === true){
+            intrudersArray.push(arr[i])
+        }
     }
-   }
-   return { inputArray, resultStringSeparator };
+    return intrudersArray.join(' ');
 }
 
-const displayResult = ( inputArray, separator ) => {
-    let resultString ="";
-   
-    for( let i = 0; i < inputArray.length; i++ ){
-        resultString += inputArray[i] + separator;
-    }
-    return resultString;
+const getArgumentsIntoArray = args => {
+    let inputArray = [];
+
+   for( let i = 2; i < args.length ; i++){
+        inputArray.push(args[i]);
+   }
+
+   return inputArray;
 }
 
 // Error Handling
-const MIN_ARG_COUNT_CHECK = myTools.checkMinArgumentCount(3, COMMAND_LINE_ARGS);
-if(!MIN_ARG_COUNT_CHECK)  console.log("Veuillez entrer au moins 2 chaînes de caractères ainsi que le sépérateur souhaité.");
+const MIN_ARG_COUNT_CHECK = myTools.checkMinArgumentCount(2, COMMAND_LINE_ARGS);
+if(!MIN_ARG_COUNT_CHECK)  console.log("Veuillez entrer au moins 2 éléments.");
 
 if(MIN_ARG_COUNT_CHECK){
-    const {inputArray, resultStringSeparator} = getArgumentsIntoArray(COMMAND_LINE_ARGS);
+    const inputArray = getArgumentsIntoArray(COMMAND_LINE_ARGS);
     // Display
-    console.log(displayResult(inputArray, resultStringSeparator));
+    console.log(findIntruders(inputArray));
 }
