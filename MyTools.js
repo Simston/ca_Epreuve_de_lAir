@@ -27,6 +27,20 @@ class MyTools {
 
       return expectedMinCountNumber <= countArgs;
   }
+  /**
+     * Get the arguments Array without indesirable informations
+     * @param {any[]} args - Arguments array to check.
+     * @returns {[]} - Returns final array
+     */
+  getArgumentsIntoArray = args => {
+    let inputArray = [];
+
+   for( let i = 2; i < args.length ; i++){
+        inputArray.push(args[i]);
+   }
+
+   return inputArray;
+}
 
     /**
      * Checks if the character string does not contain numbers and special characters.

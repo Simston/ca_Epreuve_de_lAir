@@ -31,7 +31,6 @@ const getArgumentsIntoArray = args => {
    for( let i = 2; i < args.length ; i++){
         inputArray.push(args[i]);
    }
-
    return inputArray;
 }
 

@@ -28,6 +28,7 @@ const splitStringWithStringSeparator = (stringBeforeCut, separator) => {
             FINAL_ARRAY.push(string);
         }
     return FINAL_ARRAY.join("\n");
+    }
 }
 
 // Error Handling
