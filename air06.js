@@ -11,11 +11,11 @@ const sortedInsert = (argsArray) => {
 
     const { inputArray, newElement } = result;
 
-    if (inputArray.length === 0 || newElement > inputArray[inputArray.length - 1]) { // If newELement is > to last element in inputArray
+    if (inputArray.length === 0 || newElement > inputArray[inputArray.length - 1]) { // If newELement is > last element in inputArray
         inputArray.push(newElement);
         return inputArray;
     }
-    if(newElement < inputArray[0]){ // If newELement is < to first Element in inputArray
+    if(newElement < inputArray[0]){ // If newELement is < first Element in inputArray
         inputArray.unshift(newElement);
         return inputArray;
     }
@@ -28,9 +28,9 @@ const sortedInsert = (argsArray) => {
 }
 
 /**
- * Get the arguments array without undesirable information
- * @param {any[]} args - Arguments array to check.
- * @returns {{ inputArray: any[], newElement: any }} - Returns an object containing the final array (inputArray) and newElement.
+ * Get the arguments array without undesirable information.
+ * @param {any[]} args - The arguments array to check.
+ * @returns {?{ inputArray: any[], newElement: any }} - An object containing the final array (inputArray) and newElement, or null if the arguments are invalid.
  */
 const getArgumentsIntoIntegerArray = args => {
     let inputArray = [];
