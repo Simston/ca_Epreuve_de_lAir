@@ -3,7 +3,7 @@ const myTools = new MyTools();
 const COMMAND_LINE_ARGS = process.argv;
 
 /**
- * Searches for the presence of a substring in a given string.
+ * Searches the presence of a substring in a given string.
  * @param {string} string1 - The string in which to perform the search.
  * @param {string} string2 - The substring to search for.
  * @returns {boolean} - True if the substring is found, otherwise False.
@@ -31,7 +31,7 @@ const findStringInString = (string1, string2) =>{
 }
 
 /**
- * Get the arguments array from Command lines without undesirable information
+ * Get the arguments array from Command lines without undesirable informations.
  * @param {any[]} args - Arguments array to check.
  * @returns {{ inputArray: any[], comparator: string }} inputArray  - Returns an object containing the final array (inputArray) and comparator.
  */
@@ -61,7 +61,6 @@ const sanitaryPass = (inputArray, comparator) => {
         }
     }
     return inputArray
-    //.map(item => item.charAt(0).toUpperCase() + item.slice(1));;
 }
 
 // Error Handling
