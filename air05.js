@@ -43,7 +43,6 @@ const getArgumentsIntoLowerCaseArray = args => {
 
             if(i === args.length-1){
                 comparator = args[i];
-                
             }else{
                 inputArray.push(args[i]);
             }

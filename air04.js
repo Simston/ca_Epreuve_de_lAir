@@ -4,7 +4,7 @@ const COMMAND_LINE_ARGS = process.argv;
 
 const addOrSous = (argsArray) =>{
     let resultArray = [];
-    ({inputArray: argsArray, separator} = getArgumentsIntoIntegerArray(COMMAND_LINE_ARGS));
+    ({inputArray: argsArray, separator} = getArgumentsIntoIntegerArray(argsArray));
     let sign = separator.charAt(0);
     let number = parseInt(separator.slice(1));
 
@@ -22,7 +22,7 @@ const addOrSous = (argsArray) =>{
     return resultArray;
 }
 
-  /**
+/**
  * Get the arguments array without undesirable information
  * @param {any[]} args - Arguments array to check.
  * @returns {{ inputArray: any[], separator: any }} - Returns an object containing the final array (inputArray) and separator.
@@ -31,15 +31,15 @@ const getArgumentsIntoIntegerArray = args => {
     let inputArray = [];
     let separator;
 
-   for( let i = 2; i < args.length ; i++){
+    for( let i = 2; i < args.length ; i++){
 
-        if(i === args.length-1){
-            separator = args[i];
-        }else{
-            inputArray.push(parseInt(args[i]));
-        }
-   }
-   return {inputArray, separator};
+            if(i === args.length-1){
+                separator = args[i];
+            }else{
+                inputArray.push(parseInt(args[i]));
+            }
+    }
+    return {inputArray, separator};
 }
 
 // Error Handling
