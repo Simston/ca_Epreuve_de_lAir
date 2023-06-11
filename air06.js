@@ -1,9 +1,9 @@
 const MyTools = require('./MyTools');
 const myTools = new MyTools();
-const COMMAND_LINE_ARGS = process.argv;
+const commandLineArgs = process.argv;
 
 const sortedInsert = (argsArray) => {
-    const result = getArgumentsIntoIntegerArray(argsArray);
+    const result = extractArguments(argsArray);
     if (result === null) {
         console.log("Error");
         return;
@@ -11,11 +11,11 @@ const sortedInsert = (argsArray) => {
 
     const { inputArray, newElement } = result;
 
-    if (inputArray.length === 0 || newElement > inputArray[inputArray.length - 1]) { // If newELement is > last element in inputArray
+    if (inputArray.length === 0 || newElement > inputArray[inputArray.length - 1]) {
         inputArray.push(newElement);
         return inputArray;
     }
-    if(newElement < inputArray[0]){ // If newELement is < first Element in inputArray
+    if (newElement < inputArray[0]) {
         inputArray.unshift(newElement);
         return inputArray;
     }
@@ -28,36 +28,36 @@ const sortedInsert = (argsArray) => {
 }
 
 /**
- * Get the arguments array without undesirable information.
+ * Extract the valid arguments array.
  * @param {any[]} args - The arguments array to check.
  * @returns {?{ inputArray: any[], newElement: any }} - An object containing the final array (inputArray) and newElement, or null if the arguments are invalid.
  */
-const getArgumentsIntoIntegerArray = args => {
+const extractArguments = args => {
     let inputArray = [];
     let newElement;
     let arg = 0;
 
-    for( let i = 2; i < args.length ; i++){
-        arg = parseInt(args[i])
+    for (let i = 2; i < args.length; i++) {
+        arg = parseInt(args[i]);
 
-        if(!isNaN(arg)){
-            if(i === args.length-1){
+        if (!isNaN(arg)) {
+            if (i === args.length - 1) {
                 newElement = arg;
-            }else{
+            } else {
                 inputArray.push(arg);
             }
-        }else{
+        } else {
             return null;
         }
-            
     }
-    return {inputArray, newElement};
+
+    return { inputArray, newElement };
 }
 
 // Error Handling
-const MIN_ARGS_COUNT_CHECK = myTools.checkMinArgumentCount(2, COMMAND_LINE_ARGS);
-if(!MIN_ARGS_COUNT_CHECK) {
-    console.log("Veuillez entrer au moins un nombre ainsi q'un nouvel élément de type nombre.");
-}else{
-    console.log(sortedInsert(COMMAND_LINE_ARGS));
+const hasMinArgsCount = myTools.checkMinArgumentCount(2, commandLineArgs);
+if (!hasMinArgsCount) {
+    console.log("Veuillez entrer au moins un nombre ainsi qu'un nouvel élément de type nombre.");
+} else {
+    console.log(sortedInsert(commandLineArgs));
 }
