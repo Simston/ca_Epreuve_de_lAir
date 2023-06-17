@@ -40,12 +40,11 @@ const sortedInsert = (array, element) => {
 }
 
 const sorted_fusion = (array1, array2) => {
-    let resultArray = [];
 
     for(let i=0; i < array2.length; i++){
-        resultArray = sortedInsert(array1, array2[i]);
+        sortedInsert(array1, array2[i]);
     }
-    return resultArray;
+    return array1;
 }
 
 // Error Handling
