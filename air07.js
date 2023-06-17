@@ -55,5 +55,5 @@ if (!hasMinArgsCount) {
     // parsing
     const { array1, array2 } = recoverArgsTwoArray(commandLineArgs);
     // display
-    console.log(sorted_fusion(array1, array2));
+    console.log(sorted_fusion(array1, array2).join(' '));
 }
