@@ -45,7 +45,6 @@ if (require.main === module) {
     }
 }
 
-
 module.exports = {
     splitString,
     setShowErrorMessage: value => {
