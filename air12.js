@@ -47,15 +47,12 @@ function testGetArgumentsIntoIntegerArray(){
   const result = getArgumentsIntoIntegerArray(argsArray);
   assert.deepStrictEqual(result, expectedResult);
 }
-
-
 function testMinArgsCountCheck() {
   const argsArray = ['/snap/node/7392/bin/node', '/pathOfFile'];
   const expectedResult = false;
   const result = myTools.checkMinArgumentCount(2, argsArray);
   assert.strictEqual(result, expectedResult);
 }
-
 setShowErrorMessage(false);
 
 function runTests() {

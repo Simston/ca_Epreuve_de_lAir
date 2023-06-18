@@ -2,7 +2,7 @@ const MyTools = require('./MyTools');
 const myTools = new MyTools();
 const ARGS_ARRAY = process.argv;
 const STRING_SEPARATOR = ARGS_ARRAY[3];
-let showErrorMessage = true;
+let showErrorMessage = true; 
 
 const splitStringWithStringSeparator = (stringBeforeCut, separator) => {
     const FINAL_ARRAY = [];
@@ -33,11 +33,18 @@ const splitStringWithStringSeparator = (stringBeforeCut, separator) => {
 }
 
 // Error Handling
-const ARGS_OK = myTools.checkArgumentCount(2, ARGS_ARRAY);
-if(!ARGS_OK && showErrorMessage)  console.log("Veuillez entrer une chaîne de caractères ainsi que le sépérateur souhaité.");
-// Display
-if(ARGS_OK){
-    console.log(splitStringWithStringSeparator(ARGS_ARRAY[2], STRING_SEPARATOR));
+if (require.main === module) {
+    const ARGS_OK = myTools.checkArgumentCount(2, ARGS_ARRAY);
+    if (!showErrorMessage) {
+        return FINAL_ARRAY.join("\n");
+    } 
+    else if(!ARGS_OK && showErrorMessage) {
+            console.log("Veuillez entrer une chaîne de caractères ainsi que le sépérateur souhaité.");
+    } 
+    // Display
+    if(ARGS_OK){
+        console.log(splitStringWithStringSeparator(ARGS_ARRAY[2], STRING_SEPARATOR));
+    }
 }
 
 module.exports = {
