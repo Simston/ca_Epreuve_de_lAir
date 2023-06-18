@@ -1,5 +1,4 @@
 class MyTools {
-
     /**
      * Checks the number of expected arguments.
      * @param {number} expectedCountNumber - The expected number of arguments (integer).
@@ -116,13 +115,4 @@ class MyTools {
 }
 
 // Export de la classe pour une utilisation externe   
-module.exports = MyTools;  
-
-
-
-
-
-
-
-
-
+module.exports = MyTools;
