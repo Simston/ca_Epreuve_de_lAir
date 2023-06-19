@@ -8,7 +8,7 @@ const splitStringWithStringSeparator = (stringBeforeCut, separator) => {
     const FINAL_ARRAY = [];
     let matchCount = 0;
     let string = "";
-   
+
     for(let i = 0; i < stringBeforeCut.length; i++){   
         string += stringBeforeCut[i];
 
@@ -17,14 +17,12 @@ const splitStringWithStringSeparator = (stringBeforeCut, separator) => {
         }else{
             matchCount = 0;
         }        
-
         if(matchCount === separator.length){
             string = string.slice(0, string.length - separator.length);
             FINAL_ARRAY.push(string);
             string = "";
             matchCount = 0;
         }    
-
         if(i === stringBeforeCut.length -1){
             FINAL_ARRAY.push(string);
         }
@@ -35,10 +33,7 @@ const splitStringWithStringSeparator = (stringBeforeCut, separator) => {
 // Error Handling
 if (require.main === module) {
     const ARGS_OK = myTools.checkArgumentCount(2, ARGS_ARRAY);
-    if (!showErrorMessage) {
-        return FINAL_ARRAY.join("\n");
-    } 
-    else if(!ARGS_OK && showErrorMessage) {
+    if(!ARGS_OK && showErrorMessage) {
             console.log("Veuillez entrer une chaîne de caractères ainsi que le sépérateur souhaité.");
     } 
     // Display
@@ -49,7 +44,7 @@ if (require.main === module) {
 
 module.exports = {
     splitStringWithStringSeparator,
-    setShowErrorMessage: value => {
+    setErrorMessage: value => {
         showErrorMessage = value;
     }
 };

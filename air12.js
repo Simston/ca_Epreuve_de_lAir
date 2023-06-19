@@ -1,8 +1,9 @@
 const assert = require('assert');
 
-const { splitString } = require('./air00');
+const { splitString, setShowErrorMessage } = require('./air00');
 const { splitStringWithStringSeparator } = require('./air01');
-const { addOrSous, getArgumentsIntoIntegerArray, setShowErrorMessage } = require('./air04');
+const { findIntruders } = require('./air02');
+const { addOrSous, getArgumentsIntoIntegerArray } = require('./air04');
 const MyTools = require('./MyTools');
 const myTools = new MyTools();
 
@@ -26,6 +27,16 @@ function testSplitStringWithStringSeparator() {
   const expectedResult = "Crevette magique dans \n mer des étoiles";
 
   const result = splitStringWithStringSeparator(inputString, separator);
+  assert.strictEqual(result, expectedResult);
+}
+/**
+ * AIR02 TESTS
+ */
+function testFindIntruders() {
+  const inputArray = [1,2,3,4,5,4,3,2,1,8,15];
+  const expectedResult = "5 8 15";
+
+  const result = findIntruders(inputArray);
   assert.strictEqual(result, expectedResult);
 }
 /**
@@ -58,6 +69,7 @@ setShowErrorMessage(false);
 function runTests() {
     runTest(testSplitString,'air00 (1/1)');
     runTest(testSplitStringWithStringSeparator, "air01 (1/1)");
+    runTest(testFindIntruders, 'air02 (1/1)')
     runTest(testAddOrSous, 'air04 (1/3)');
     runTest(testGetArgumentsIntoIntegerArray, 'air04 (2/3)');
     runTest(testMinArgsCountCheck, 'air04 (3/3)');

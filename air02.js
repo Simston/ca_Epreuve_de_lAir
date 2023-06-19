@@ -1,6 +1,7 @@
 const MyTools = require('./MyTools');
 const myTools = new MyTools();
 const COMMAND_LINE_ARGS = process.argv;
+let showErrorMessage = true;
 
 const findIntruders = arr => {
     const intrudersArray = [];
@@ -28,18 +29,30 @@ const findIntruders = arr => {
 const getArgumentsIntoArray = args => {
     let inputArray = [];
 
-   for( let i = 2; i < args.length ; i++){
+    for( let i = 2; i < args.length ; i++){
         inputArray.push(args[i]);
-   }
-   return inputArray;
+    }
+    return inputArray;
 }
 
 // Error Handling
-const MIN_ARG_COUNT_CHECK = myTools.checkMinArgumentCount(2, COMMAND_LINE_ARGS);
-if(!MIN_ARG_COUNT_CHECK)  console.log("Veuillez entrer au moins 2 éléments.");
-
-if(MIN_ARG_COUNT_CHECK){
-    const inputArray = getArgumentsIntoArray(COMMAND_LINE_ARGS);
-    // Display
-    console.log(findIntruders(inputArray));
+if (require.main === module) { 
+    const MIN_ARG_COUNT_CHECK = myTools.checkMinArgumentCount(2, COMMAND_LINE_ARGS);
+    if(MIN_ARG_COUNT_CHECK){
+        const inputArray = getArgumentsIntoArray(COMMAND_LINE_ARGS);
+        // Display
+        console.log(findIntruders(inputArray));
+    }
+    else if(!MIN_ARG_COUNT_CHECK) {
+        if (showErrorMessage) {
+            console.log("Veuillez entrer au moins 2 éléments.");
+        }
+    } 
 }
+
+module.exports = {
+    findIntruders,
+    setShowErrorMessage: value => {
+        showErrorMessage = value;
+    }
+};
