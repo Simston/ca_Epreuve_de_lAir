@@ -17,7 +17,6 @@ const findStringInString = (string1, string2) =>{
         found = true;
 
         for(let y=0; y < lenghtOfSecondString; y++){
-
             if (string1[i + y].toLowerCase() !== string2[y].toLowerCase() || string1[i + y].toUpperCase() !== string2[y].toUpperCase()) {
                 found = false;
                 break;
@@ -70,3 +69,9 @@ if(MIN_ARGS_COUNT_CHECK){
     ({inputArray, comparator} = getArgumentsIntoLowerCaseArray(COMMAND_LINE_ARGS));
     console.log(sanitaryPass(inputArray, comparator));
 }
+
+module.exports = { 
+    findStringInString, 
+    getArgumentsIntoLowerCaseArray, 
+    sanitaryPass
+};
