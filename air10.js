@@ -2,6 +2,7 @@
 
 const toPyramide = (element, nbStage) =>{
     let resultArray = [];
+    let addSpace = 2;
 
     for(i=0; i < nbStage; i++){
         let tempString = "";
@@ -9,15 +10,10 @@ const toPyramide = (element, nbStage) =>{
             tempString += element;       
         }
         resultArray.push(tempString)
-    }
-    
-    let addSpace = 2;
-    for(i = 1; i < resultArray.length; i++){
         resultArray[i] = resultArray[i].padStart(resultArray[i].length + addSpace/2, " ").padEnd(resultArray[i].length + 2 * addSpace/2, " ");
         addSpace += 2;
     }
-
-    return resultArray.reverse();
+    return resultArray.reverse().join('\n');
 }
 
-console.log(toPyramide(0, 20));
+console.log(toPyramide(0, 5));

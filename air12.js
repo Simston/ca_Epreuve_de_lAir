@@ -5,7 +5,7 @@ const { splitStringWithStringSeparator } = require('./air01');
 const { findIntruders } = require('./air02');
 const { cutSameCharInString } = require('./air03');
 const { addOrSous, getArgumentsIntoIntegerArray } = require('./air04');
-const { findStringInString, getArgumentsIntoLowerCaseArray, sanitaryPass } = require('./air05');
+const { findStringInString, getArgsAndComparator, sanitaryPass } = require('./air05');
 /*const {} = require('./air06');
 const {} = require('./air07');
 const {} = require('./air08');
@@ -94,14 +94,22 @@ function testFindStringInString(){
   const result = findStringInString(string1, string2);
   assert.strictEqual(result, expectedResult);
 }
-function testGetArgumentsIntoLowerCaseArray(){
-
+function testGetArgsAndComparator(){
+  const argsArray = ['/snap/node/7392/bin/node', '/pathOfFile', "BLABLA", "TRALALA"];
+  const expectedResult = {
+    inputArray: ['BLABLA'],
+    comparator: 'TRALALA'
+  };
+  const result = getArgsAndComparator(argsArray)
+  assert.deepStrictEqual(result, expectedResult);
 }
 function testsanitaryPass(){
 
 }
 
 setShowErrorMessage(false);
+let countSuccess = 0;
+let totalCount = 0;
 
 function runTests() {
     runTest(testSplitString,'air00 (1/1)');
@@ -112,15 +120,17 @@ function runTests() {
     runTest(testGetArgumentsIntoIntegerArray, 'air04 (2/3)');
     runTest(testMinArgsCountCheck, 'air04 (3/3)');
     runTest(testFindStringInString,'air05 (1/3)');
-    //runTest(testGetArgumentsIntoLowerCaseArray,'air05 2/3');
+    runTest(testGetArgsAndComparator,'air05 (2/3)');
     //runTest(testGsanitaryPass,'air05 3/3');
-
+    console.log(countSuccess + "/" + totalCount);
 }
 
 function runTest(testFunction, testName){
+  totalCount++;
   try{
   testFunction();
-  console.log(testName, "\x1b[32m", 'success', '\x1b[0m')
+  countSuccess++;
+  console.log(testName, "\x1b[32m", 'success', '\x1b[0m');
   }catch (error){
     if (error instanceof assert.AssertionError) {
       console.error(testName, "\x1b[31m", 'failed','\x1b[0m' + error.message);
