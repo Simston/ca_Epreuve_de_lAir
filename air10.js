@@ -16,4 +16,4 @@ const toPyramide = (element, nbStage) =>{
     return resultArray.reverse().join('\n');
 }
 
-console.log(toPyramide(0, 5));
+console.log(toPyramide(0, 6));

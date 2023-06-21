@@ -4,6 +4,7 @@ const commandLineArgs = process.argv;
 
 const sortedInsert = (argsArray) => {
     const result = extractArguments(argsArray);
+    //if arguments is NaN("=null")
     if (result === null) {
         console.log("Error");
         return;
@@ -54,10 +55,17 @@ const extractArguments = args => {
     return { inputArray, newElement };
 }
 
-// Error Handling
-const hasMinArgsCount = myTools.checkMinArgumentCount(2, commandLineArgs);
-if (!hasMinArgsCount) {
-    console.log("Veuillez entrer au moins un nombre ainsi qu'un nouvel élément de type nombre.");
-} else {
-    console.log(sortedInsert(commandLineArgs));
+if (require.main === module) {
+    // Error Handling
+    const hasMinArgsCount = myTools.checkMinArgumentCount(2, commandLineArgs);
+    if (!hasMinArgsCount) {
+        console.log("Veuillez entrer au moins un nombre ainsi qu'un nouvel élément de type nombre.");
+    } else {
+        console.log(sortedInsert(commandLineArgs));
+    }
+}
+
+module.exports = {
+    sortedInsert,
+    extractArguments
 }

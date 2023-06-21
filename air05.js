@@ -52,7 +52,6 @@ const getArgsAndComparator = args => {
 const sanitaryPass = (inputArray, comparator) => {
 
     for(let i=0; i < inputArray.length; i++){
-
         if(findStringInString(inputArray[i], comparator)){
             inputArray.splice(i, 1);
             i--;

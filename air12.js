@@ -6,7 +6,8 @@ const { findIntruders } = require('./air02');
 const { cutSameCharInString } = require('./air03');
 const { addOrSous, getArgumentsIntoIntegerArray } = require('./air04');
 const { findStringInString, getArgsAndComparator, sanitaryPass } = require('./air05');
-/*const {} = require('./air06');
+const { sortedInsert } = require('./air06');
+/*
 const {} = require('./air07');
 const {} = require('./air08');
 const {} = require('./air09');
@@ -14,7 +15,6 @@ const {} = require('./air10');
 const {} = require('./air11');*/
 
 const MyTools = require('./MyTools');
-const air00 = require('./air00');
 const myTools = new MyTools();
 
 /**
@@ -103,8 +103,24 @@ function testGetArgsAndComparator(){
   const result = getArgsAndComparator(argsArray)
   assert.deepStrictEqual(result, expectedResult);
 }
-function testsanitaryPass(){
+function testSanitaryPass(){
+  const inputArray = ["Michel","Albert","Thérèse","Benoit"];
+  const comparator = "t";
+  const expectedResult = ["Michel"];
+  const result = sanitaryPass(inputArray, comparator);
+  assert.deepStrictEqual(result, expectedResult);
+}
+/**
+ * AIR06 TESTS
+ */
+function testSortedInsert() {
+  const inputArray = [1, 3, 4, 7];
+  const newElement = 5;
+  const expectedResult = [1, 3, 4, 5, 7];
+  const argsArray = ['node', 'path/to/file.js', ...inputArray.map(String), String(newElement)];
 
+  const result = sortedInsert(argsArray);
+  assert.deepStrictEqual(result, expectedResult);
 }
 
 setShowErrorMessage(false);
@@ -121,7 +137,8 @@ function runTests() {
     runTest(testMinArgsCountCheck, 'air04 (3/3)');
     runTest(testFindStringInString,'air05 (1/3)');
     runTest(testGetArgsAndComparator,'air05 (2/3)');
-    //runTest(testGsanitaryPass,'air05 3/3');
+    runTest(testSanitaryPass,'air05 (3/3)');
+    runTest(testSortedInsert, 'air06 (1/1)');
     console.log(countSuccess + "/" + totalCount);
 }
 
