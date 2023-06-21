@@ -34,7 +34,7 @@ const findStringInString = (string1, string2) =>{
  * @param {any[]} args - Arguments array to check.
  * @returns {{ inputArray: any[], comparator: string }} inputArray  - Returns an object containing the final array (inputArray) and comparator.
  */
-const getArgumentsIntoLowerCaseArray = args => {
+const getArgsAndComparator = args => {
     let inputArray = [];
     let comparator;
 
@@ -61,17 +61,17 @@ const sanitaryPass = (inputArray, comparator) => {
     return inputArray
 }
 
-// Error Handling
-const MIN_ARGS_COUNT_CHECK = myTools.checkMinArgumentCount(2, COMMAND_LINE_ARGS);
-if(!MIN_ARGS_COUNT_CHECK)  console.log("Veuillez entrer au moins une chaîne, et un comparateur");
-
-if(MIN_ARGS_COUNT_CHECK){
-    ({inputArray, comparator} = getArgumentsIntoLowerCaseArray(COMMAND_LINE_ARGS));
-    console.log(sanitaryPass(inputArray, comparator));
+if (require.main === module) {
+    const MIN_ARGS_COUNT_CHECK = myTools.checkMinArgumentCount(2, COMMAND_LINE_ARGS);
+    if (myTools.checkMinArgumentCount(2, COMMAND_LINE_ARGS)) {
+        const { inputArray, comparator } = getArgsAndComparator(COMMAND_LINE_ARGS);
+        console.log(sanitaryPass(inputArray, comparator));
+    } else {
+        console.log("Veuillez entrer au moins une chaîne et un comparateur");
+    }
 }
-
 module.exports = { 
     findStringInString, 
-    getArgumentsIntoLowerCaseArray, 
+    getArgsAndComparator, 
     sanitaryPass
 };
