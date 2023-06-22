@@ -28,3 +28,7 @@ if (!hasMinArgsCount) {
     // display
     console.log(myRotation(inputArray));
 }
+
+module.exports = {
+    myRotation
+}

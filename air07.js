@@ -57,3 +57,9 @@ if (!hasMinArgsCount) {
     // display
     console.log(sorted_fusion(array1, array2).join(' '));
 }
+
+module.exports = {
+    recoverArgsTwoArray,
+    sortedInsert,
+    sorted_fusion
+}

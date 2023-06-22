@@ -7,10 +7,10 @@ const { cutSameCharInString } = require('./air03');
 const { addOrSous, getArgumentsIntoIntegerArray } = require('./air04');
 const { findStringInString, getArgsAndComparator, sanitaryPass } = require('./air05');
 const { sortedInsert } = require('./air06');
+const { recoverArgsTwoArray,sorted_fusion } = require('./air07');
+const { myRotation } = require('./air08');
+//const { readFileEx } = require('./air09');
 /*
-const {} = require('./air07');
-const {} = require('./air08');
-const {} = require('./air09');
 const {} = require('./air10');
 const {} = require('./air11');*/
 
@@ -122,6 +122,40 @@ function testSortedInsert() {
   const result = sortedInsert(argsArray);
   assert.deepStrictEqual(result, expectedResult);
 }
+/**
+ * AIR07 TESTS
+ */
+function testRecoverArgsTwoArray() {
+  const argsArray = ['node', 'path/to/file.js',10,20,30,"fusion",15,25,35];
+  const expectedResult = {array1:[10,20,30],array2:[15,25,35]};
+  const result = recoverArgsTwoArray(argsArray);
+  assert.deepStrictEqual(result, expectedResult)
+}
+function testSorted_fusion() {
+  const array1 = [10,20,30];
+  const array2 = [15,25,35];
+  const expectedResult = [10,15,20,25,30,35];
+  const result = sorted_fusion(array1, array2);
+  assert.deepStrictEqual(result, expectedResult);
+}
+/**
+ * AIR08 TESTS
+ */
+function testMyRotation() {
+  const inputArray = [13,7];
+  const expectedResult = [7,13];
+  const result = myRotation(inputArray);
+  assert.deepStrictEqual(result, expectedResult);
+}
+/**
+ * AIR09 TESTS
+ */
+function testReadFile() {
+  const testFileName = 'file.txt';
+  const expectedResult = "Test de lecture d'un fichier.";
+  const result = readFileEx(testFileName);
+  assert.strictEqual(result, expectedResult);
+}
 
 setShowErrorMessage(false);
 let countSuccess = 0;
@@ -139,6 +173,10 @@ function runTests() {
     runTest(testGetArgsAndComparator,'air05 (2/3)');
     runTest(testSanitaryPass,'air05 (3/3)');
     runTest(testSortedInsert, 'air06 (1/1)');
+    runTest(testRecoverArgsTwoArray, 'air07 (1/2)');
+    runTest(testSorted_fusion, 'air07 (2/2)');
+    runTest(testMyRotation, 'air08 (1/1)');
+    //runTest(testReadFile, 'air09 (1/1)');
     console.log(countSuccess + "/" + totalCount);
 }
 
