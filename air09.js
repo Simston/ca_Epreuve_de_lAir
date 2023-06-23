@@ -1,23 +1,35 @@
+const { rejects } = require('assert');
 const fs = require('fs');
+const { resolve } = require('path');
 const fileName = process.argv[2];
 
 const readFileEx = fileName => {
-    
-    if(!fileName){
-        console.log("Veuillez fournir le nom du fichier en tant qu'argument.");
-        process.exit(1)
-    }
-    
-    fs.readFile(fileName, 'utf8', (err, data) => {
-        if(err){
-            console.error("Une erreur s'est produite lors de la lecture du fichier : ${err}");
-            process.exit(1);
+    return new Promise((resolve, reject) => {
+        if(!fileName){
+            reject(new Error("Veuillez fournir le nom du fichier en tant qu'argument."));
+            return;
         }
-        console.log(data);
+        
+        fs.readFile(fileName, 'utf8', (err, data) => {
+            if(err){
+                reject(new Error(`Une erreur s'est produite lors de la lecture du fichier : ${err}`));
+                return
+            }
+            resolve(data);
+        });
     });
-}
+};
 
-readFileEx(fileName);
+if (require.main === module) {
+    readFileEx(fileName)
+    .then((data)=> {
+        console.log(data);
+    })
+    .catch((err) => {
+        console.error(err);
+    });
+    
+}
 
 module.exports = {
     readFileEx

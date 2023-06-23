@@ -9,7 +9,7 @@ const { findStringInString, getArgsAndComparator, sanitaryPass } = require('./ai
 const { sortedInsert } = require('./air06');
 const { recoverArgsTwoArray,sorted_fusion } = require('./air07');
 const { myRotation } = require('./air08');
-//const { readFileEx } = require('./air09');
+const { readFileEx } = require('./air09');
 /*
 const {} = require('./air10');
 const {} = require('./air11');*/
@@ -150,11 +150,20 @@ function testMyRotation() {
 /**
  * AIR09 TESTS
  */
-function testReadFile() {
+async function testReadFile() {
   const testFileName = 'file.txt';
   const expectedResult = "Test de lecture d'un fichier.";
-  const result = readFileEx(testFileName);
-  assert.strictEqual(result, expectedResult);
+
+  try {
+    const result = await readFileEx(testFileName);
+    if (result !== expectedResult) {
+      return false; // Le test a échoué
+    }
+  } catch (error) {
+    return false; // Le test a échoué
+  }
+
+  return true; // Le test a réussi
 }
 
 setShowErrorMessage(false);
@@ -176,23 +185,40 @@ function runTests() {
     runTest(testRecoverArgsTwoArray, 'air07 (1/2)');
     runTest(testSorted_fusion, 'air07 (2/2)');
     runTest(testMyRotation, 'air08 (1/1)');
-    //runTest(testReadFile, 'air09 (1/1)');
-    console.log(countSuccess + "/" + totalCount);
+    runTest2(testReadFile, 'air09 (1/1)');
+    
 }
 
-function runTest(testFunction, testName){
+function runTest(testFunction, testName) {
   totalCount++;
-  try{
-  testFunction();
-  countSuccess++;
-  console.log(testName, "\x1b[32m", 'success', '\x1b[0m');
-  }catch (error){
+  try {
+    testFunction();
+    countSuccess++;
+    console.log(testName, "\x1b[32m", 'success', '\x1b[0m');
+  } catch (error) {
     if (error instanceof assert.AssertionError) {
-      console.error(testName, "\x1b[31m", 'failed','\x1b[0m' + error.message);
+      console.error(testName, "\x1b[31m", 'failed', '\x1b[0m' + error.message);
     } else {
-      console.error('Test failed:', error.message);
+      console.error(testName, "\x1b[31m", 'failed', '\x1b[0m', error.message);
     }
   }
+}
+
+async function runTest2(testFunction, testName) {
+  totalCount++;
+  try {
+    const testResult = await testFunction();
+    if (testResult) {
+      countSuccess++;
+      console.log(testName, "\x1b[32m", 'success', '\x1b[0m');
+    } else {
+      console.error(testName, "\x1b[31m", 'failed', '\x1b[0m');
+    }
+  } catch (error) {
+    console.error(testName, "\x1b[31m", 'failed', '\x1b[0m', error.message);
+  }
+  console.log(countSuccess + "/" + totalCount);
+
 }
 
 runTests();
