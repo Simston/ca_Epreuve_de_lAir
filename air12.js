@@ -10,8 +10,9 @@ const { sortedInsert } = require('./air06');
 const { recoverArgsTwoArray,sorted_fusion } = require('./air07');
 const { myRotation } = require('./air08');
 const { readFileEx } = require('./air09');
+const { toPyramide } = require('./air10');
+
 /*
-const {} = require('./air10');
 const {} = require('./air11');*/
 
 const MyTools = require('./MyTools');
@@ -157,13 +158,23 @@ async function testReadFile() {
   try {
     const result = await readFileEx(testFileName);
     if (result !== expectedResult) {
-      return false; // Le test a échoué
+      return false; // The test failed
     }
   } catch (error) {
-    return false; // Le test a échoué
+    return false; // The test failed
   }
 
-  return true; // Le test a réussi
+  return true; // The test passed
+}
+/**
+ * AIR10 TESTS
+ */
+function testToPyramide() {
+  const element = "$";
+  const nbStage = 3;
+  const expectedResult = '   $   \n  $$$  \n $$$$$ ';
+  const result = toPyramide(element, nbStage);
+  assert.deepStrictEqual(result, expectedResult);
 }
 
 setShowErrorMessage(false);
@@ -186,7 +197,7 @@ function runTests() {
     runTest(testSorted_fusion, 'air07 (2/2)');
     runTest(testMyRotation, 'air08 (1/1)');
     runTest2(testReadFile, 'air09 (1/1)');
-    
+    runTest(testToPyramide,'air10 (1/1)');
 }
 
 function runTest(testFunction, testName) {

@@ -18,15 +18,17 @@ const getArgumentsIntoArray = args => {
     return inputArray;
 }
 
-// Error Handling
-const hasMinArgsCount = myTools.checkMinArgumentCount(3, commandLineArgs);
-if (!hasMinArgsCount) {
-    console.log("Veuillez entrer au moins 3 éléments.");
-} else {
-    // parsing
-    const inputArray = getArgumentsIntoArray(commandLineArgs)
-    // display
-    console.log(myRotation(inputArray));
+if (require.main === module) {
+    // Error Handling
+    const hasMinArgsCount = myTools.checkMinArgumentCount(3, commandLineArgs);
+    if (!hasMinArgsCount) {
+        console.log("Veuillez entrer au moins 3 éléments.");
+    } else {
+        // parsing
+        const inputArray = getArgumentsIntoArray(commandLineArgs)
+        // display
+        console.log(myRotation(inputArray));
+    }
 }
 
 module.exports = {

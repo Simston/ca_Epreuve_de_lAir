@@ -1,4 +1,6 @@
-
+const MyTools = require('./MyTools');
+const myTools = new MyTools();
+const commandLineArgs = process.argv;
 
 const toPyramide = (element, nbStage) =>{
     let resultArray = [];
@@ -16,4 +18,20 @@ const toPyramide = (element, nbStage) =>{
     return resultArray.reverse().join('\n');
 }
 
-console.log(toPyramide(0, 6));
+if (require.main === module){
+    // Error Handling
+    const hasMinArgsCount = myTools.checkArgumentCount(2, commandLineArgs);
+    if (!hasMinArgsCount) {
+        console.log("Veuillez entrer le caractère qui servira à afficher votre pyramide, ainsi que le nombre d'étages souhaité.");
+    } else {
+        // parsing
+        const element = commandLineArgs[2];
+        const nbStage = commandLineArgs[3];
+        // display
+        console.log(toPyramide(element,nbStage));
+    }
+}
+
+module.exports = {
+    toPyramide
+}
