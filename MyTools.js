@@ -34,11 +34,28 @@ class MyTools {
   getArgumentsIntoArray = args => {
     let inputArray = [];
 
-   for( let i = 2; i < args.length ; i++){
+  for( let i = 2; i < args.length ; i++){
         inputArray.push(args[i]);
-   }
+  }
 
-   return inputArray;
+  return inputArray;
+}
+/**
+ * Converts the arguments into an array of integers.
+ * @param {Array} args - The arguments passed to the function.
+ * @returns {Array|null} - The array of integers, or null if an argument is not a number.
+ */
+getArgumentsIntoIntegerArray = args => {
+  let inputArray = [];
+
+  for( let i = 2; i < args.length ; i++){
+    if(isNaN(parseInt(args[i]))){
+      return null;
+    }else{
+      inputArray.push(parseInt(args[i]));
+    }
+  }
+  return inputArray;
 }
 
     /**

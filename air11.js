@@ -1,20 +1,21 @@
-const { test } = require("node:test");
-
+const { exit } = require('process');
+const MyTools = require('./MyTools');
+const myTools = new MyTools();
 const commandLineArgs = process.argv;
 
 const quickSort = inputArray => {
     let smaller = [];
     let greater = [];
-    let pivot = inputArray[inputArray.length - 1];
+    let pivot = inputArray[Math.floor(Math.random() * inputArray.length)];
 
     if(inputArray.length <= 1){
         return inputArray;
     }
 
-    for(let i = 0; i < inputArray.length-1; i++){
+    for(let i = 0; i < inputArray.length; i++){
         if(inputArray[i] < pivot){
             smaller.push(inputArray[i])
-        }else{
+        }else if (inputArray[i] > pivot){
             greater.push(inputArray[i]);
         }
     }
@@ -22,8 +23,21 @@ const quickSort = inputArray => {
     const sortedSmaller = quickSort(smaller);
     const sortedGreater = quickSort(greater);
 
-
     return [...sortedSmaller, pivot, ...sortedGreater]
 }
 
-console.log(quickSort([7,2,1,6,8,5,3,4]));
+if (require.main === module){
+    // Error Handling
+    const hasMinArgsCount = myTools.checkMinArgumentCount(2, commandLineArgs);
+    const inputIntArray = myTools.getArgumentsIntoIntegerArray(commandLineArgs)
+
+    if (!hasMinArgsCount) {
+        console.log("Veuiller saisir au moins 2 éléments.");
+        process.exit;
+    } else if (inputIntArray === null){
+        console.log("Veuillez saisir uniquement des nombres.");
+        process.exit;
+    } else {
+        console.log(quickSort(inputIntArray));
+    }
+}
