@@ -1,5 +1,4 @@
 const assert = require('assert');
-
 const MyTools = require('./MyTools');
 const myTools = new MyTools();
 const { splitString, setShowErrorMessage } = require('./air00');
@@ -202,8 +201,7 @@ function runTests() {
     runTest(testRecoverArgsTwoArray, 'air07 (1/2)');
     runTest(testSorted_fusion, 'air07 (2/2)');
     runTest(testMyRotation, 'air08 (1/1)');
-    runTest2(testReadFile, 'air09 (1/1)');
-    
+    runTest2(testReadFile, 'air09 (1/1)'); 
 }
 
 function runTest(testFunction, testName) {
