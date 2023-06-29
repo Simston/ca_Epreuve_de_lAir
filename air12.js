@@ -1,5 +1,7 @@
 const assert = require('assert');
 
+const MyTools = require('./MyTools');
+const myTools = new MyTools();
 const { splitString, setShowErrorMessage } = require('./air00');
 const { splitStringWithStringSeparator } = require('./air01');
 const { findIntruders } = require('./air02');
@@ -11,12 +13,7 @@ const { recoverArgsTwoArray,sorted_fusion } = require('./air07');
 const { myRotation } = require('./air08');
 const { readFileEx } = require('./air09');
 const { toPyramide } = require('./air10');
-
-/*
-const {} = require('./air11');*/
-
-const MyTools = require('./MyTools');
-const myTools = new MyTools();
+const { quickSort } = require('./air11');
 
 /**
  * AIR00 TESTS
@@ -176,6 +173,15 @@ function testToPyramide() {
   const result = toPyramide(element, nbStage);
   assert.deepStrictEqual(result, expectedResult);
 }
+/**
+ * AIR11 TESTS
+ */
+function testQuickSort(){
+  const inputArray = [1,5,6,3,2];
+  const expectedResult = [1,2,3,5,6];
+  const result = quickSort(inputArray);
+  assert.deepStrictEqual(result, expectedResult);
+}
 
 setShowErrorMessage(false);
 let countSuccess = 0;
@@ -197,7 +203,7 @@ function runTests() {
     runTest(testSorted_fusion, 'air07 (2/2)');
     runTest(testMyRotation, 'air08 (1/1)');
     runTest2(testReadFile, 'air09 (1/1)');
-    runTest(testToPyramide,'air10 (1/1)');
+    
 }
 
 function runTest(testFunction, testName) {
@@ -228,8 +234,9 @@ async function runTest2(testFunction, testName) {
   } catch (error) {
     console.error(testName, "\x1b[31m", 'failed', '\x1b[0m', error.message);
   }
+  runTest(testToPyramide,'air10 (1/1)');
+  runTest(testQuickSort, 'air11 (1/1)');
   console.log(countSuccess + "/" + totalCount);
-
 }
 
 runTests();

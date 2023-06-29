@@ -28,11 +28,11 @@ const quickSort = inputArray => {
 
 if (require.main === module){
     // Error Handling
-    const hasMinArgsCount = myTools.checkMinArgumentCount(2, commandLineArgs);
+    const hasMinArgsCount = myTools.checkMinArgumentCount(1, commandLineArgs);
     const inputIntArray = myTools.getArgumentsIntoIntegerArray(commandLineArgs)
 
     if (!hasMinArgsCount) {
-        console.log("Veuiller saisir au moins 2 éléments.");
+        console.log("Veuiller saisir au moins 1 éléments.");
         process.exit;
     } else if (inputIntArray === null){
         console.log("Veuillez saisir uniquement des nombres.");
@@ -40,4 +40,8 @@ if (require.main === module){
     } else {
         console.log(quickSort(inputIntArray));
     }
+}
+
+module.exports = {
+    quickSort
 }
